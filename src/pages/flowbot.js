@@ -9,16 +9,28 @@ export default ({ data }) => {
       <h1>Flowbot</h1>
       <p>Flowbot was designed so that I could stop checking AWW whitewater to see when things started flowing better.. Less High, write more --- verbage. yay</p>
       <form
-        name="flowbot-subscribe"
+        name="flowbot"
         method="post"
         data-netlify="true"
-        data-netlify-honeypot="bot-field"
+        data-netlify-honeypot="field-for-bots"
+        action="#"
       >
-        <input name="url" placeholder="url" type="text" /> <br />
-        <input name="target" placeholder="target flow" type="text" /> <br />
-        <input name="overUnder" type="radio" value="over" checked /> Over <br />
-        <input name="overUnder" type="radio" value="under" /> Under <br />
-        <button>Send</button>
+        <input name="field-for-bots" type="hidden" />
+        <p>
+          <label>AWW Section URL: <input name="url" placeholder="https://www.americanwhitewater.org/content/River/detail/id/423" type="text" /></label>
+        </p>
+        <p>
+          <label>Target Flow: <input name="target" placeholder="350" type="text" /></label>
+        </p>
+        <p>
+          <label>Type of target: <select name="type">
+            <option value="over">Over</option>
+            <option value="under">Under</option>
+          </select></label>
+        </p>
+        <p>
+          <button type="submit">Send</button>
+        </p>
       </form>
     </Layout>
   )
