@@ -15,8 +15,10 @@ export default ({ data }) => {
             border-bottom: 1px solid;
           `}
         >
-          {data.site.siteMetadata.title}
+          {data.site.siteMetadata.title} Homepage
         </h1>
+        <h4>My blog about packrafting around Colorado</h4>
+        <hr />
         <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
         {data.allMarkdownRemark.edges.map(({ node }) => (
           <div key={node.id}>

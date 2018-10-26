@@ -23,12 +23,13 @@ export default ({ data }) => {
           `}
       >
         Flowbot</h1>
-      <p>Flowbot was designed so that I could stop checking AWW whitewater to see when things started flowing better.. Less High, write more --- verbage. yay</p>
+      <p>Flowbot was designed so that I could stop checking AWW whitewater to see when things started flowing better..</p>
+      <p>It is a really simple tool.  To use it, you just browse to a river section of river you want to paddle on <a href="https://americanwhitewater.org/content/River/state-summary/state/CO/" target="_blank">American Whitewater's</a> website.  Then paste the url into the form below, along with the target flow you want to be notified when it breaches.  Use whatever flow units the gauge on the page you've linked uses.  Enter in your email address, along with whether you want to be notified when the flow is above or below your target number, and then <strong>flowbot</strong> will do the rest!</p>
       <form
         name="flowbot"
         method="post"
         data-netlify="true"
-        data-netlify-honeypot="field-for-bots"
+        d target="_blank"ata-netlify-honeypot="field-for-bots"
         action="#"
         className={css`
           display: flex;
