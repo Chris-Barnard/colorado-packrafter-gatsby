@@ -1,16 +1,17 @@
 module.exports = {
   siteMetadata: {
-  	title: `Pandas Eating Lots`,
+    title: 'Colorado Packrafter',
   },
   plugins: [
-  	{
-  		resolve: `gatsby-source-filesystem`,
-      	options: {
+    {
+      resolve: `gatsby-source-filesystem`,
+        options: {
         name: `src`,
         path: `${__dirname}/src/`,
       },
-  	},
+    },
     `gatsby-transformer-remark`,
+    `gatsby-plugin-catch-links`,
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-typography`,
