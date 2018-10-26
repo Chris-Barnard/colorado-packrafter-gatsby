@@ -49,6 +49,9 @@ export default ({ data }) => {
           </select></label>
         </p>
         <p className={flex}>
+          <label>Email Address: <input className={fullWidth} name="email" placeholder="chris@coloradopackrafter.com" type="email" /></label>
+        </p>
+        <p className={flex}>
           <button type="submit">Send</button>
         </p>
       </form>
