@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
+import Image from "../components/image"
 
 export default ({ data }) => (
   <Layout>
@@ -10,6 +11,7 @@ export default ({ data }) => (
       My name is Chris Barnard.  I live in Denver and love to packraft all
       around Colorado, and the surrounding areas.
     </p>
+    <Image src={data.site.siteMetadata.aboutImage} alt="Myself paddling on the Green River" caption="Photo: Adrian Boloveschi" />
     <p>
       This is a blog about my experiences packrafting around Colorado.  I hope
       to provide both some tools, and some inspiration for people to get out
@@ -29,6 +31,7 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        aboutImage
       }
     }
   }
