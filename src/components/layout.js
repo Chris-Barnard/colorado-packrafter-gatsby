@@ -47,7 +47,7 @@ export default ({ children }) => (
           to={`/flowbot/`}
           className={css`
             float: right;
-            margin-right: 8px;
+            margin-right: ${rhythm(0.5)};
           `}
         >
           Flowbot
