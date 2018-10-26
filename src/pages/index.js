@@ -5,6 +5,8 @@ import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
 
 export default ({ data }) => {
+  const { totalCount, edges } = data.allMarkdownRemark
+
   console.log(data)
   return (
     <Layout>
@@ -17,8 +19,8 @@ export default ({ data }) => {
         >
           Packrafting around Colorado
         </h1>
-        <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
+        <h4>{totalCount} Posts</h4>
+        {edges.map(({ node }) => (
           <div key={node.id}>
             <Link
               to={node.fields.slug}
@@ -41,7 +43,7 @@ export default ({ data }) => {
                   — {node.frontmatter.date}
                 </span>
               </h3>
-              <p>{node.excerpt}</p>
+              <p>{node.frontmatter.excerpt ? node.frontmatter.excerpt : node.excerpt}</p>
             </Link>
           </div>
         ))}
@@ -65,6 +67,7 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
+            excerpt
           }
           fields {
             slug
