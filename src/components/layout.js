@@ -43,6 +43,15 @@ export default ({ children }) => (
         >
           About
         </Link>
+        <Link
+          to={`/flowbot/`}
+          className={css`
+            float: right;
+            margin-right: 8px;
+          `}
+        >
+          Flowbot
+        </Link>
         {children}
       </div>
     )}
