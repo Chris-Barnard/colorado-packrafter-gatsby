@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'Colorado Packrafter',
-    aboutImage: '../flaming-gorge.jpg'
+    aboutImage: '../flaming-gorge-700.jpg'
   },
   plugins: [
     {
