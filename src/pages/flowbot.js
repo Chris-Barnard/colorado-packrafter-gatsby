@@ -1,6 +1,7 @@
 import React from "react"
 // import { graphql } from "gatsby"
 import { css } from "react-emotion"
+import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
 
 export default ({ data }) => {
@@ -13,6 +14,21 @@ export default ({ data }) => {
 
   const fullWidth = css`
     width: 100%;
+  `
+
+  const overUnder = css`
+    flex-basis: 50%;
+    margin-right: ${rhythm(1/2)}
+  `
+
+  const flowInput = css`
+    flex-basis: 50%;
+    margin-left: ${rhythm(1/2)}
+  `
+
+  const flexCols = css`
+    display: flex;
+    flex-direction: row;
   `
 
   return (
@@ -53,13 +69,17 @@ export default ({ data }) => {
           <label>AWW Section URL: <input className={fullWidth} name="url" placeholder="https://www.americanwhitewater.org/content/River/detail/id/423" type="text" /></label>
         </p>
         <p className={flex}>
-          <label>Target Flow: <input className={fullWidth} name="target" placeholder="350" type="text" /></label>
-        </p>
-        <p className={flex}>
-          <label>Type of target: <select className={fullWidth} name="type">
-            <option value="over">Over</option>
-            <option value="under">Under</option>
-          </select></label>
+          <div className={flexCols}>
+            <div className={overUnder}>
+              <label>Type of target: <select className={fullWidth} name="type">
+                <option value="over">Over</option>
+                <option value="under">Under</option>
+              </select></label>
+            </div>
+            <div className={flowInput}>
+              <label>Target Flow: <input className={fullWidth} name="target" placeholder="350" type="text" /></label>
+            </div>
+          </div>
         </p>
         <p className={flex}>
           <label>Email Address: <input className={fullWidth} name="email" placeholder="chris@coloradopackrafter.com" type="email" /></label>
