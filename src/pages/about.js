@@ -6,7 +6,7 @@ import Image from "../components/image"
 export default ({ data }) => (
   <Layout>
     
-    <h1>About {data.site.siteMetadata.title}</h1>
+    <h1>About Me</h1>
     <p>
       My name is Chris Barnard.  I live in Denver and love to packraft all
       around Colorado, and the surrounding areas.
