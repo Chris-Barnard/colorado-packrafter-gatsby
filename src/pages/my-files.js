@@ -19,8 +19,8 @@ export default ({ data }) => {
             </tr>
           </thead>
           <tbody>
-            {data.allFile.edges.map(({ node }, index) => (
-              <tr key={index}>
+            {data.allFile.edges.map(({ node }) => (
+              <tr key={node.id}>
                 <td>{node.relativePath}</td>
                 <td>{node.prettySize}</td>
                 <td>{node.extension}</td>
@@ -40,6 +40,7 @@ export const query = graphql`
     allFile(sort: {fields: modifiedTime, order: DESC}) {
       edges {
         node {
+          id
           relativePath
           prettySize
           extension

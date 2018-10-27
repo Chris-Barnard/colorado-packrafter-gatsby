@@ -1,12 +1,17 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { css } from "react-emotion"
 import Layout from "../components/layout"
 import Image from "../components/image"
 
 export default ({ data }) => (
   <Layout>
     
-    <h1>About Me</h1>
+    <h1
+      className={css`
+            border-bottom: 1px solid;
+          `}
+    >About Me</h1>
     <p>
       My name is Chris Barnard.  I live in Denver and love to packraft all
       around Colorado, and the surrounding areas.
