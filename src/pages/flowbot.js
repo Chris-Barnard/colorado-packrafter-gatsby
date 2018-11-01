@@ -4,90 +4,209 @@ import { css } from "react-emotion"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
 
-export default ({ data }) => {
-  console.log(data)
+class Flowbot extends React.Component {
+  constructor(props) {
+    super(props)
 
-  const flex = css`
-    flex: 1 1 auto;
-    width: 100%;
-  `
+    this.state = {
+      formData : {
+        url : '',
+        type : 'OVER',
+        target : '',
+        email : '',
+      },
+      formSubmitting : false,
+      formError : false,
+    }
 
-  const fullWidth = css`
-    width: 100%;
-  `
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
 
-  const overUnder = css`
-    flex-basis: 50%;
-    margin-right: ${rhythm(1/2)}
-  `
+  handleSubmit(event) {
+    const url = 'https://18.219.68.63:5000/add-tracker/'
+    // console.log(event)
 
-  const flowInput = css`
-    flex-basis: 50%;
-    margin-left: ${rhythm(1/2)}
-  `
+    event.preventDefault()
+    this.setState({ ...this.state, formSubmitting : true, formSuccess : false, formError : false })
 
-  const flexCols = css`
-    display: flex;
-    flex-direction: row;
-  `
+    fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(this.state.formData)
+    })
+      .then((response) => {
+        console.log(response)
+        if (!response.ok) {
+          this.setState({ ...this.state, formSubmitting : false, formError : true })
+          throw Error(response.statusText)
+        }
+        return response
+      })
+      .then(response => response.json())
+      .then(items => {
+        console.log(items)
+        this.setState({ ...this.state, formSubmitting : false, formSuccess : true, formData : {
+          url : '',
+          type : 'OVER',
+          target : '',
+          email : '',
+        }})
+      })
+  }
 
-  return (
-    <Layout>
-      <h1
-          className={css`
-            border-bottom: 1px solid;
-          `}
-      >
-        Flowbot</h1>
-      <p>
-        Flowbot was designed so that I could stop checking AWW to see when
-        things started flowing better..
-      </p>
-      <p>
-        It is a really simple tool.  To use it, you just browse to a section of
-        river you want to paddle on <a href="https://americanwhitewater.org/content/River/state-summary/state/CO/">American Whitewater's</a> website.
-        Then paste the url into the form below, along with your target flow you
-        want to be notified when it breaches.  Use whatever flow units the
-        gauge on the page you've linked uses.  Enter in your email address,
-        along with whether you want to be notified when the flow is above or
-        below your target number, and then <strong>flowbot</strong> will keep
-        an eye on it and contact you when your condition is met!
-      </p>
-      <form
-        name="flowbot"
-        method="post"
-        data-netlify="true"
-        data-netlify-honeypot="field-for-bots"
-        action="#"
-        className={css`
-          display: flex;
-          flex-direction: column;
-        `}
-      >
-        <input name="field-for-bots" type="hidden" />
-        <p className={flex}>
-          <label>AWW Section URL: <input className={fullWidth} name="url" placeholder="https://www.americanwhitewater.org/content/River/detail/id/423" type="text" /></label>
+  render() {
+    // const data = this.props
+    console.log(this.state)
+
+    const flex = css`
+      flex: 1 1 auto;
+      width: 100%;
+    `
+
+    const fullWidth = css`
+      width: 100%;
+      margin-bottom: ${rhythm(1/2)}
+    `
+
+    const overUnder = css`
+      flex-basis: 50%;
+      margin-right: ${rhythm(1/2)}
+    `
+
+    const flowInput = css`
+      flex-basis: 50%;
+      margin-left: ${rhythm(1/2)}
+    `
+
+    const flexCols = css`
+      display: flex;
+      flex-direction: row;
+    `
+
+    const submittedNotification = css`
+      display: block;
+      border: solid 1px darkgrey;
+      margin: 0 auto;
+      padding: ${rhythm(1.5)};
+      width: 80%;
+      text-align: center;
+      margin-bottom: ${rhythm(1)};
+    `
+
+    const successNotification = css`
+      display: block;
+      border: solid 1px green;
+      margin: 0 auto;
+      padding: ${rhythm(1.5)};
+      width: 80%;
+      text-align: center;
+      margin-bottom: ${rhythm(1)};
+    `
+
+    const errorNotification = css`
+      display: block;
+      border: solid 1px red;
+      margin: 0 auto;
+      padding: ${rhythm(1.5)};
+      width: 80%;
+      text-align: center;
+      margin-bottom: ${rhythm(1)};
+    `
+
+    return (
+      <Layout>
+        <h1
+            className={css`
+              border-bottom: 1px solid;
+            `}
+        >
+          Flowbot</h1>
+        <p>
+          Flowbot was designed so that I could stop checking AWW to see when
+          things started flowing better..
         </p>
-        <p className={flex}>
-          <div className={flexCols}>
-            <div className={overUnder}>
-              <label>Type of target: <select className={fullWidth} name="type">
-                <option value="over">Over</option>
-                <option value="under">Under</option>
-              </select></label>
-            </div>
-            <div className={flowInput}>
-              <label>Target Flow: <input className={fullWidth} name="target" placeholder="350" type="text" /></label>
+        <p>
+          It is a really simple tool.  To use it, you just browse to a section of
+          river you want to paddle on <a href="https://americanwhitewater.org/content/River/state-summary/state/CO/">American Whitewater's</a> website.
+          Then paste the url into the form below, along with your target flow you
+          want to be notified when it breaches.  Use whatever flow units the
+          gauge on the page you've linked uses.  Enter in your email address,
+          along with whether you want to be notified when the flow is above or
+          below your target number, and then <strong>flowbot</strong> will keep
+          an eye on it and contact you when your condition is met!
+        </p>
+        { this.state.formSubmitting && 
+          <div className={submittedNotification}>Submitted: Handing the request off to Flowbot</div>
+        }
+        { this.state.formSuccess && 
+          <div className={successNotification}>Success: Flowbot is on it!</div>
+        }
+        { this.state.formError && 
+          <div className={errorNotification}>Error: There was an error delivering the request</div>
+        }
+        <form
+          name="flowbot"
+          method="post"
+          data-netlify="false"
+          data-netlify-honeypot="field-for-bots"
+          className={css`
+            display: flex;
+            flex-direction: column;
+          `}
+          onSubmit={this.handleSubmit}
+        >
+          <input name="field-for-bots" type="hidden" />
+          <div className={flex}>
+            <label>AWW Section URL: <input className={fullWidth} 
+                                          name="url"
+                                          placeholder="https://www.americanwhitewater.org/content/River/detail/id/423"
+                                          type="text"
+                                          value={this.state.formData.url}
+                                          onChange={event => this.setState({...this.state, formData : { ...this.state.formData, url : event.target.value }})}
+                                    /></label>
+          </div>
+          <div className={flex}>
+            <div className={flexCols}>
+              <div className={overUnder}>
+                <label>Type of target: <select className={fullWidth}
+                                              name="type"
+                                              value={this.state.formData.type}
+                                          onChange={event => this.setState({...this.state, formData : { ...this.state.formData, type : event.target.value }})}
+                                        >
+                  <option value="over">Over</option>
+                  <option value="under">Under</option>
+                </select></label>
+              </div>
+              <div className={flowInput}>
+                <label>Target Flow: <input className={fullWidth}
+                                          name="target"
+                                          placeholder="350"
+                                          type="text"
+                                          value={this.state.formData.target}
+                                          onChange={event => this.setState({...this.state, formData : { ...this.state.formData, target : event.target.value }})}
+                                    /></label>
+              </div>
             </div>
           </div>
-        </p>
-        <p className={flex}>
-          <label>Email Address: <input className={fullWidth} name="email" placeholder="chris@coloradopackrafter.com" type="email" /></label>
-        </p>
-        <p className={flex}>
-          <button type="submit">Send</button>
-        </p>
-      </form>
-    </Layout>
-  )
+          <div className={flex}>
+            <label>Email Address: <input className={fullWidth}
+                                        name="email"
+                                        placeholder="chris@coloradopackrafter.com"
+                                        type="email"
+                                        value={this.state.formData.email}
+                                        onChange={event => this.setState({...this.state, formData : { ...this.state.formData, email: event.target.value }})}
+                                  /></label>
+          </div>
+          <div className={flex}>
+            <button type="submit">Send</button>
+          </div>
+        </form>
+      </Layout>
+    )
+  }
 }
+
+export default Flowbot
