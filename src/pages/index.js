@@ -1,52 +1,67 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import { css } from "react-emotion"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
+import PostHeader from "../components/postHeader"
 
 export default ({ data }) => {
   const { totalCount, edges } = data.allMarkdownRemark
 
+  const titleStyle = css`
+    display: inline-block;
+    border-bottom: 1px solid;
+  `
+  const subTitleStyle = css`
+    border-bottom: 1px solid;
+    margin-bottom: ${rhythm(1/2)};
+    margin-top: ${rhythm(2)};
+  `
   console.log(data)
   return (
     <Layout>
       <div>
-        <h1
-          className={css`
-            display: inline-block;
-            border-bottom: 1px solid;
-          `}
-        >
-          Packrafting around Colorado
-        </h1>
+        <h1 className={titleStyle}>Packrafting around Colorado</h1>
         <h4>{totalCount} Posts</h4>
-        {edges.map(({ node }) => (
-          <div key={node.id}>
-            <Link
-              to={node.fields.slug}
-              className={css`
-                text-decoration: none;
-                color: inherit;
-              `}
-            >
-              <h3
-                className={css`
-                  margin-bottom: ${rhythm(1 / 4)};
-                `}
-              >
-                {node.frontmatter.title}{" "}
-                <span
-                  className={css`
-                    color: #bbb;
-                  `}
-                >
-                  — {node.frontmatter.date}
-                </span>
-              </h3>
-              <p>{node.frontmatter.excerpt ? node.frontmatter.excerpt : node.excerpt}</p>
-            </Link>
-          </div>
-        ))}
+        <h2 className={subTitleStyle} >General Updates</h2>
+        {edges.map(({ node }) => {
+          // ----------------------------------------------------------
+          // General Posts
+          // ----------------------------------------------------------
+          const { fields, id, frontmatter, excerpt } = node
+          const { slug, postType } = fields
+          if (postType === 'posts') {
+            return (
+              <PostHeader
+                key={id+"posts"}
+                slug={slug}
+                frontmatter={frontmatter}
+                excerpt={excerpt}
+              />
+            )
+          }
+          return null
+        })}
+
+        <h2 className={subTitleStyle} >River Sections</h2>
+        {edges.map(({ node }) => {
+          // ----------------------------------------------------------
+          // River Sections
+          // ----------------------------------------------------------
+          const { fields, id, frontmatter, excerpt } = node
+          const { slug, postType } = fields
+          if (postType === 'river-sections') {
+            return (
+              <PostHeader
+                key={id+"posts"}
+                slug={slug}
+                frontmatter={frontmatter}
+                excerpt={excerpt}
+              />
+            )
+          }
+          return null
+        })}
       </div>
     </Layout>
   )
@@ -69,9 +84,12 @@ export const query = graphql`
             title
             date(formatString: "DD MMMM, YYYY")
             excerpt
+            tags
+            difficulty
           }
           fields {
             slug
+            postType
           }
           excerpt
         }
