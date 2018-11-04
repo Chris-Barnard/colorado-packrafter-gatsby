@@ -130,7 +130,7 @@ class Flowbot extends React.Component {
         </p>
         <p>
           It is a really simple tool.  To use it, you just browse to a section of
-          river you want to paddle on <a href="https://americanwhitewater.org/content/River/state-summary/state/CO/">American Whitewater's</a> website.
+          river you want to paddle on <a target="_&" href="https://americanwhitewater.org/content/River/state-summary/state/CO/">American Whitewater's</a> website.
           Then paste the url into the form below, along with your target flow you
           want to be notified when it breaches.  Use whatever flow units the
           gauge on the page you've linked uses.  Enter in your email address,
@@ -162,7 +162,7 @@ class Flowbot extends React.Component {
           <div className={flex}>
             <label>AWW Section URL: <input className={fullWidth} 
                                           name="url"
-                                          placeholder="https://www.americanwhitewater.org/content/River/detail/id/423"
+                                          placeholder="https://www.americanwhitewater.org/content/River/detail/id/423/"
                                           type="text"
                                           value={this.state.formData.url}
                                           onChange={event => this.setState({...this.state, formData : { ...this.state.formData, url : event.target.value }})}
@@ -194,7 +194,7 @@ class Flowbot extends React.Component {
           <div className={flex}>
             <label>Email Address: <input className={fullWidth}
                                         name="email"
-                                        placeholder="chris@coloradopackrafter.com"
+                                        placeholder="barnard.chris@gmail.com"
                                         type="email"
                                         value={this.state.formData.email}
                                         onChange={event => this.setState({...this.state, formData : { ...this.state.formData, email: event.target.value }})}
