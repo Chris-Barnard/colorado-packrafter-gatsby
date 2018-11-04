@@ -125,8 +125,8 @@ class Flowbot extends React.Component {
         >
           Flowbot</h1>
         <p>
-          Flowbot was designed so that I could stop checking AWW to see when
-          things started flowing better..
+          Flowbot was designed so that I could spend less time refreshing AWW, but still stay
+          on top of when flows hit certain levels.
         </p>
         <p>
           It is a really simple tool.  To use it, you just browse to a section of

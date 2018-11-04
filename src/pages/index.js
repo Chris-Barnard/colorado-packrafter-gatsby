@@ -3,11 +3,9 @@ import { Link, graphql } from "gatsby"
 import { css } from "react-emotion"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
-import Image from "../components/image"
 
 export default ({ data }) => {
   const { totalCount, edges } = data.allMarkdownRemark
-  const { titleImage } = data.site.siteMetadata
 
   console.log(data)
   return (
@@ -21,7 +19,6 @@ export default ({ data }) => {
         >
           Packrafting around Colorado
         </h1>
-        <Image src={titleImage} alt="I'm approaching the takeout of Waterton Canyon" caption="Finishing up Waterton Canyon" />
         <h4>{totalCount} Posts</h4>
         {edges.map(({ node }) => (
           <div key={node.id}>

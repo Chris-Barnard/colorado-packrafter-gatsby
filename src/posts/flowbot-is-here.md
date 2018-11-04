@@ -1,6 +1,6 @@
 ---
 title: "Flowbot Is Here"
-date: "2018-10-25"
+date: "2018-11-04"
 tags: ['announcement','flowbot']
 excerpt: "I created an easy tool to watch an American Whitewater gauge for it to hit a certain level, and then it will send you an email notification."
 ---

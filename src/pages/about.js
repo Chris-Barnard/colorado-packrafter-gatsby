@@ -16,7 +16,11 @@ export default ({ data }) => (
       My name is Chris Barnard.  I live in Denver and love to packraft all
       around Colorado, and the surrounding areas.
     </p>
-    <Image src={data.site.siteMetadata.aboutImage} alt="Myself paddling on the Green River" caption="Photo: Adrian Boloveschi" />
+    <Image
+      src={data.site.siteMetadata.aboutImage}
+      alt="Myself paddling on the Green River"
+      caption="Green River - Photo: Adrian Boloveschi"
+    />
     <p>
       This is a blog about my experiences packrafting around Colorado.  I hope
       to provide both some tools, and some inspiration for people to get out
