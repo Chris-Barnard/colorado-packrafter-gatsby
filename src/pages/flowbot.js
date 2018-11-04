@@ -23,7 +23,7 @@ class Flowbot extends React.Component {
   }
 
   handleSubmit(event) {
-    const url = 'https://18.219.68.63:5000/add-tracker/'
+    const url = 'http://18.219.68.63:5000/add-tracker/'
     // console.log(event)
 
     event.preventDefault()

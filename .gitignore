@@ -58,5 +58,5 @@ typings/
 .env
 
 .cache/
-public/static/
+public/
 yarn-error.log
