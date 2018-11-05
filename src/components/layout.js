@@ -15,45 +15,65 @@ export default ({ children }) => (
         }
       }
     `}
-    render={data => (
-      <div
-        className={css`
-          margin: 0 auto;
-          max-width: 700px;
-          padding: ${rhythm(2)};
-          padding-top: ${rhythm(1.5)};
-        `}
-      >
-        <Link to={`/`}>
-          <h3
-            className={css`
-              margin-bottom: ${rhythm(2)};
-              display: inline-block;
-              font-style: normal;
-            `}
-          >            
-          {data.site.siteMetadata.title}
-          </h3>
-        </Link>
-        <Link
-          to={`/about/`}
-          className={css`
-            float: right;
-          `}
-        >
-          About
-        </Link>
-        <Link
-          to={`/flowbot/`}
-          className={css`
-            float: right;
-            margin-right: ${rhythm(0.5)};
-          `}
-        >
-          Flowbot
-        </Link>
-        {children}
-      </div>
-    )}
+    render={data => {
+      const menuNav = css`
+        width: 100%;
+        background: rgb(18,18,18);
+        padding: ${rhythm(3/4)};
+      `
+      const menuList = css`
+        list-style: none;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+      `
+      const menuTitle = css`
+        position: relative;
+        // width: 100%;
+        flex-basis: 100%;
+        flex-grow: 1;
+        margin: 0;
+        display: inline-block;
+      `
+      const menuOther = css`
+        display: inline-block;
+        margin: 0;
+        margin-left: ${rhythm(1/2)};
+        color: lightgrey;
+      `
+      const mainPage = css`
+        margin: 0 auto;
+        max-width: 700px;
+        padding: ${rhythm(2)};
+        padding-top: ${rhythm(1.5)};
+      `
+      const mainViewport = css`
+        margin-top: ${rhythm(1)};
+      `
+      const link = css`
+        color: lightgrey;
+        text-decoration: none;
+      `
+      return (
+        <div className={mainPage}>
+          <nav className={menuNav} >
+            <ul className={menuList} >
+              <li className={menuTitle}>
+                <Link className={link} to={`/`}>{data.site.siteMetadata.title}</Link>
+              </li>
+              <li className={menuOther}>
+                <Link className={link} to={`/flowbot/`}>Flowbot</Link>
+              </li>
+              <li className={menuOther}>
+                <Link className={link} to={`/about/`}>About</Link>
+              </li>
+            </ul>
+          </nav>
+          <div className={mainViewport}>
+            {children}
+          </div>
+        </div>
+      )}
+    }
   />
 )
