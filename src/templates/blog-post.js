@@ -2,24 +2,31 @@ import React from "react"
 import Layout from "../components/layout"
 import { css } from "react-emotion"
 import { rhythm } from "../utils/typography"
+import { graphql } from "gatsby"
 
 export default ({ data }) => {
   const post = data.markdownRemark
+  const displayDate = post.frontmatter.difficulty ? "Class " + post.frontmatter.difficulty : post.frontmatter.date
+  const postHeader = css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  `
+  const postTitle = css`
+    display: inline-block;
+  `
+  const postDate = css`
+    display: inline-block;
+    padding-top: ${rhythm(1/3)}
+  `
   console.log(post)
   return (
     <Layout>
-      <div>
-        <span>
-          <h1 className={css`
-            display: inline-block;
-          `} >{post.frontmatter.title}</h1>
-          <h3 className={css`
-            float: right;
-            padding-top: ${rhythm(1/3)}
-          `} >{post.frontmatter.date}</h3>
-        </span>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <div className={postHeader}>
+        <h1 className={postTitle}>{post.frontmatter.title}</h1>
+        <h3 className={postDate}>{displayDate}</h3>
       </div>
+      <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </Layout>
   )
 }
@@ -31,6 +38,7 @@ export const query = graphql`
       frontmatter {
         title
         date(fromNow: true)
+        difficulty
       }
     }
   }

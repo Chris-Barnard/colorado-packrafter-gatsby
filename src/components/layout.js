@@ -16,6 +16,12 @@ export default ({ children }) => (
       }
     `}
     render={data => {
+      const mainPage = css`
+        margin: 0 auto;
+        max-width: 700px;
+        padding: ${rhythm(2)};
+        padding-top: ${rhythm(1.5)};
+      `
       const menuNav = css`
         width: 100%;
         background: rgb(18,18,18);
@@ -40,12 +46,6 @@ export default ({ children }) => (
         margin: 0;
         margin-left: ${rhythm(1/2)};
         color: lightgrey;
-      `
-      const mainPage = css`
-        margin: 0 auto;
-        max-width: 700px;
-        padding: ${rhythm(2)};
-        padding-top: ${rhythm(1.5)};
       `
       const mainViewport = css`
         margin-top: ${rhythm(1)};
