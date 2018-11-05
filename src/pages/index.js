@@ -17,7 +17,6 @@ export default ({ data }) => {
     margin-bottom: ${rhythm(1/2)};
     margin-top: ${rhythm(2)};
   `
-  console.log(data)
   return (
     <Layout>
       <div>
