@@ -8,8 +8,7 @@ import PostHeader from "../components/postHeader"
 export default ({ data }) => {
   const { totalCount, edges } = data.allMarkdownRemark
 
-  const titleStyle = css`
-    display: inline-block;
+  const headerStyle = css`
     border-bottom: 1px solid;
   `
   const subTitleStyle = css`
@@ -20,7 +19,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <div>
-        <h1 className={titleStyle}>Packrafting around Colorado</h1>
+        <h1 className={headerStyle}>Packrafting around Colorado</h1>
         <h4>{totalCount} Posts</h4>
         <h2 className={subTitleStyle} >General Updates</h2>
         {edges.map(({ node }) => {

@@ -19,7 +19,6 @@ export default ({ data }) => {
     display: inline-block;
     padding-top: ${rhythm(1/3)}
   `
-  console.log(post)
   return (
     <Layout>
       <div className={postHeader}>

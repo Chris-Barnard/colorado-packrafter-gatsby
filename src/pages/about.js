@@ -10,9 +10,7 @@ export default ({ data }) => {
   `
   return (
     <Layout>
-      <h1
-        className={headerStyle}
-      >About Me</h1>
+      <h1 className={headerStyle}>About Me</h1>
       <p>
         My name is Chris Barnard.  I live in Denver and love to packraft all
         around Colorado, and the surrounding areas.

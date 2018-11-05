@@ -64,7 +64,13 @@ class Flowbot extends React.Component {
       flex: 1 1 auto;
       width: 100%;
     `
-
+    const formStyle = css`
+      display: flex;
+      flex-direction: column;
+      max-width: 550px;
+      margin: 0 auto;
+      margin-bottom: ${rhythm(1)};
+    `
     const inputStyle = css`
       width: 100%;
       border: none;
@@ -73,22 +79,22 @@ class Flowbot extends React.Component {
       padding: ${rhythm(1)};
       margin-bottom: ${rhythm(1/2)};
     `
-
     const overUnder = css`
       flex-basis: 50%;
       margin-right: ${rhythm(1/2)};
     `
-
     const flowInput = css`
       flex-basis: 50%;
       margin-left: ${rhythm(1/2)};
     `
-
     const flexCols = css`
       display: flex;
       flex-direction: row;
     `
-
+    const submitButtonStyle = css`
+      align-self: center;
+      width: 80%;
+    `
     const submittedNotification = css`
       display: block;
       border: solid 1px darkgrey;
@@ -100,7 +106,6 @@ class Flowbot extends React.Component {
       text-align: center;
       margin-bottom: ${rhythm(1)};
     `
-
     const successNotification = css`
       display: block;
       border: solid 1px darkgreen;
@@ -112,7 +117,6 @@ class Flowbot extends React.Component {
       text-align: center;
       margin-bottom: ${rhythm(1)};
     `
-
     const errorNotification = css`
       display: block;
       border: solid 1px darkred;
@@ -140,10 +144,7 @@ class Flowbot extends React.Component {
           method="post"
           data-netlify="false"
           data-netlify-honeypot="field-for-bots"
-          className={css`
-            display: flex;
-            flex-direction: column;
-          `}
+          className={formStyle}
           onSubmit={this.handleSubmit}
         >
           <input name="field-for-bots" type="hidden" />
@@ -188,8 +189,8 @@ class Flowbot extends React.Component {
                                         onChange={event => this.setState({...this.state, formData : { ...this.state.formData, email: event.target.value }})}
                                   /></label>
           </div>
-          <div className={flex}>
-            <button type="submit" disabled={this.state.formData.email.length === 0} >Send</button>
+          <div className={flex+" "+submitButtonStyle}>
+            <button type="submit" disabled={this.state.formData.email.length === 0} className={flex}>Send</button>
           </div>
         </form>
       </div>

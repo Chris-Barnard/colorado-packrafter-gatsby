@@ -18,7 +18,7 @@ export default ({ children }) => (
     render={data => {
       const mainPage = css`
         margin: 0 auto;
-        max-width: 700px;
+        max-width: 1050px;
         padding: ${rhythm(2)};
         padding-top: ${rhythm(1.5)};
       `
