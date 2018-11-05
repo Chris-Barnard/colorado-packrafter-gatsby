@@ -22,6 +22,7 @@ class Flowbot extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.renderForm = this.renderForm.bind(this)
+    this.renderStatusBox = this.renderStatusBox.bind(this)
   }
 
   handleSubmit(event) {
@@ -59,42 +60,7 @@ class Flowbot extends React.Component {
       })
   }
 
-  renderForm() {
-    const flex = css`
-      flex: 1 1 auto;
-      width: 100%;
-    `
-    const formStyle = css`
-      display: flex;
-      flex-direction: column;
-      max-width: 550px;
-      margin: 0 auto;
-      margin-bottom: ${rhythm(1)};
-    `
-    const inputStyle = css`
-      width: 100%;
-      border: none;
-      border-radius: ${rhythm(1/4)};
-      background: rgb(243, 243, 243);
-      padding: ${rhythm(1)};
-      margin-bottom: ${rhythm(1/2)};
-    `
-    const overUnder = css`
-      flex-basis: 50%;
-      margin-right: ${rhythm(1/2)};
-    `
-    const flowInput = css`
-      flex-basis: 50%;
-      margin-left: ${rhythm(1/2)};
-    `
-    const flexCols = css`
-      display: flex;
-      flex-direction: row;
-    `
-    const submitButtonStyle = css`
-      align-self: center;
-      width: 80%;
-    `
+  renderStatusBox() {
     const submittedNotification = css`
       display: block;
       border: solid 1px darkgrey;
@@ -139,6 +105,48 @@ class Flowbot extends React.Component {
         { this.state.formError &&
           <div className={errorNotification}>Error: There was an error delivering the request</div>
         }
+      </div>
+    )
+  }
+
+  renderForm() {
+    const flex = css`
+      flex: 1 1 auto;
+      width: 100%;
+    `
+    const formStyle = css`
+      display: flex;
+      flex-direction: column;
+      max-width: 550px;
+      margin: 0 auto;
+      margin-bottom: ${rhythm(1)};
+    `
+    const inputStyle = css`
+      width: 100%;
+      border: none;
+      border-radius: ${rhythm(1/4)};
+      background: rgb(243, 243, 243);
+      padding: ${rhythm(1)};
+      margin-bottom: ${rhythm(1/2)};
+    `
+    const overUnder = css`
+      flex-basis: 50%;
+      margin-right: ${rhythm(1/2)};
+    `
+    const flowInput = css`
+      flex-basis: 50%;
+      margin-left: ${rhythm(1/2)};
+    `
+    const flexCols = css`
+      display: flex;
+      flex-direction: row;
+    `
+    const submitButtonStyle = css`
+      align-self: center;
+      width: 80%;
+    `
+    return (
+      <div>
         <form
           name="flowbot"
           method="post"
@@ -189,6 +197,7 @@ class Flowbot extends React.Component {
                                         onChange={event => this.setState({...this.state, formData : { ...this.state.formData, email: event.target.value }})}
                                   /></label>
           </div>
+          {this.renderStatusBox()}
           <div className={flex+" "+submitButtonStyle}>
             <button type="submit" disabled={this.state.formData.email.length === 0} className={flex}>Send</button>
           </div>
