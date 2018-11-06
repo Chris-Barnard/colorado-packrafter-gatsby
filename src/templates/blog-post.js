@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import { css } from "react-emotion"
 import { rhythm } from "../utils/typography"
 import { graphql } from "gatsby"
+import './iframe.css'
 
 export default ({ data }) => {
   const post = data.markdownRemark
@@ -23,6 +24,13 @@ export default ({ data }) => {
     padding-top: ${rhythm(1/3)};
     margin-bottom: 0;
   `
+  const disclaimer = css `
+    font-size: ${rhythm(.45)};
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    padding: ${rhythm(1)};
+    // magin-top: ${rhythm(1/2)};
+  `
   return (
     <Layout>
       <div className={postHeader}>
@@ -30,6 +38,11 @@ export default ({ data }) => {
         <h3 className={postDate}>{displayDate}</h3>
       </div>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
+      <div className={disclaimer}>
+        I am only relaying my experiences and in no way am I giving you advice on what is safe.
+        Every person ultimately must be responsible for themselves.  Do your own research and be
+        honest about your abilities.
+      </div>
     </Layout>
   )
 }

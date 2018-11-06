@@ -1,8 +1,6 @@
 module.exports = {
   siteMetadata: {
     title: 'Colorado Packrafter',
-    titleImage: '../waterton-1050.jpg',
-    aboutImage: '../flaming-gorge-1050.jpg',
   },
   plugins: [
     {
@@ -19,8 +17,17 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 1050,
+              maxWidth: 800,
+              quality: 90,
+              wrapperStyle: `margin-bottom: 10px;`,
             }
+          },
+          {
+            resolve: "gatsby-remark-embed-video",
+            options: {
+              width: 800,
+              related: false,
+            },
           },
         ],
       },

@@ -42,7 +42,6 @@ export const query = graphql`
     site {
       siteMetadata {
         title
-        aboutImage
       }
     },
     fileName: file(relativePath: { eq: "images/flaming-gorge-1050.jpg" }) {

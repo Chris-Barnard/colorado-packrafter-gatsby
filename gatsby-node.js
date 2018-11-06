@@ -11,10 +11,11 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
       name: `slug`,
       value: slug,
     })
+    console.log(slug.split("/")[2])
     createNodeField({
       node,
       name: `postType`,
-      value: slug.split("/")[1]
+      value: slug.split("/")[2]
     })
   }
 }

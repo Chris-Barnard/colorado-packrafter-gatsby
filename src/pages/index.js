@@ -28,7 +28,7 @@ export default ({ data }) => {
           // ----------------------------------------------------------
           const { fields, id, frontmatter, excerpt } = node
           const { slug, postType } = fields
-          if (postType === 'posts') {
+          if (postType !== 'river-sections') {
             return (
               <PostHeader
                 key={id+"posts"}
@@ -70,7 +70,6 @@ export const query = graphql`
     site {
       siteMetadata {
         title
-        titleImage
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
