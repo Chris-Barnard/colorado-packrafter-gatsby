@@ -7,7 +7,11 @@ difficulty: "III+"
 
 This site is currently in development and will hopefully contain some content in the coming weeks and months.  In the mean time, you can put a few entries into <a href="/flowbot/">flowbot</a> so that when the flows start to come up in the Spring, you are ready to get out there!
 
-<img src="../../waterton-1050.jpg" alt="I'm approaching the takeout of Waterton Canyon" />
+<div class="gallery">
+    <div class="gallery__item">
+        <img alt="Waterton Canyon" src="./waterton.jpg" />
+    </div>
+</div>
 
 ## Coming Soon
 

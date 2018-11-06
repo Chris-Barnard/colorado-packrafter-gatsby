@@ -1,12 +1,18 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { css } from "react-emotion"
+import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
-import Image from "../components/image"
+// import Image from "../components/image"
+import Img from "gatsby-image"
 
 export default ({ data }) => {
+  const aboutImage = data.fileName.childImageSharp.fluid
   const headerStyle = css`
     border-bottom: 1px solid;
+  `
+  const aboutImageStyle = css`
+    margin-bottom: ${rhythm(1)};
   `
   return (
     <Layout>
@@ -15,11 +21,7 @@ export default ({ data }) => {
         My name is Chris Barnard.  I live in Denver and love to packraft all
         around Colorado, and the surrounding areas.
       </p>
-      <Image
-        src={data.site.siteMetadata.aboutImage}
-        alt="Myself paddling on the Green River"
-        caption="Green River - Photo: Adrian Boloveschi"
-      />
+      <Img className={aboutImageStyle} fluid={aboutImage} />
       <p>
         This is a blog about my experiences packrafting around Colorado.  I hope
         to provide both some tools, and some inspiration for people to get out
@@ -42,6 +44,14 @@ export const query = graphql`
         title
         aboutImage
       }
+    },
+    fileName: file(relativePath: { eq: "images/flaming-gorge-1050.jpg" }) {
+    relativePath
+    childImageSharp {
+      fluid(maxWidth: 1050) { 
+        ...GatsbyImageSharpFluid
+      }
     }
+  }
   }
 `

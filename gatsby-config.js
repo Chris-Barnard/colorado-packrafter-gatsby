@@ -7,12 +7,24 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
-        options: {
+      options: {
         name: `src`,
         path: `${__dirname}/src/`,
       },
     },
-    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins : [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1050,
+            }
+          },
+        ],
+      },
+    },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-emotion`,
     {
@@ -21,5 +33,14 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    // {
+      // resolve: `gatsby-source-filesystem`,
+      // options: {
+      //   name: `images`,
+      //   path: `${__dirname}/src/images/`,
+      // },
+    // },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
   ],
 }
