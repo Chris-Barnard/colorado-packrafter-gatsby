@@ -11,13 +11,17 @@ export default ({ data }) => {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border-bottom: 1px solid black;
+    margin-bottom: ${rhythm(1)};
   `
   const postTitle = css`
     display: inline-block;
+    margin-bottom: 0;
   `
   const postDate = css`
     display: inline-block;
-    padding-top: ${rhythm(1/3)}
+    padding-top: ${rhythm(1/3)};
+    margin-bottom: 0;
   `
   return (
     <Layout>
