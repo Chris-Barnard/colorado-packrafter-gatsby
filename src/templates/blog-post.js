@@ -41,7 +41,7 @@ export default ({ data }) => {
       <div className={disclaimer}>
         I am only relaying my experiences and in no way am I giving you advice on what is safe.
         Every person ultimately must be responsible for themselves.  Do your own research and be
-        honest about your abilities.
+        honest wiht yourself about your abilities.
       </div>
     </Layout>
   )
