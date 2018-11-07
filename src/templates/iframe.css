@@ -3,3 +3,10 @@
 	flex-direction: column;
 	align-items: center;
 }
+
+@media (max-width: 800px) {
+	.embedVideoIframe {
+		width: 360px;
+		height: 204px;
+	}
+}

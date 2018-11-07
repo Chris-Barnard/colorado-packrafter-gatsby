@@ -117,7 +117,7 @@ class Flowbot extends React.Component {
     const formStyle = css`
       display: flex;
       flex-direction: column;
-      max-width: 550px;
+      max-width: 600px;
       margin: 0 auto;
       margin-bottom: ${rhythm(1)};
     `

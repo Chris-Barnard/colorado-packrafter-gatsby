@@ -1,13 +1,15 @@
 import React from "react"
 import { graphql } from "gatsby"
 import { css } from "react-emotion"
+import Img from "gatsby-image"
 import { rhythm } from "../utils/typography"
 import Layout from "../components/layout"
 import PostHeader from "../components/postHeader"
 
 export default ({ data }) => {
+  console.log(data)
   const { totalCount, edges } = data.allMarkdownRemark
-
+  const fluid = data.file.childImageSharp.fluid
   const headerStyle = css`
     border-bottom: 1px solid;
   `
@@ -16,10 +18,16 @@ export default ({ data }) => {
     margin-bottom: ${rhythm(1/2)};
     margin-top: ${rhythm(2)};
   `
+  const headerLogo = css`
+    margin-top: -${rhythm(1)};
+  `
   return (
     <Layout>
       <div>
-        <h1 className={headerStyle}>Packrafting around Colorado</h1>
+        <div className={headerLogo}>
+          <Img fluid={fluid} />
+          <h1 className={headerStyle}>Packrafting around Colorado</h1>
+        </div>
         <h4>{totalCount} Posts</h4>
         <h2 className={subTitleStyle} >General Updates</h2>
         {edges.map(({ node }) => {
@@ -89,6 +97,13 @@ export const query = graphql`
             postType
           }
           excerpt
+        }
+      }
+    }
+    file(relativePath: {eq: "images/cover-image.jpg"}) {
+      childImageSharp {
+        fluid(maxWidth: 1050) {
+          ...GatsbyImageSharpFluid
         }
       }
     }
