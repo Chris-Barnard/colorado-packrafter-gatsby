@@ -87,7 +87,7 @@ class Flowbot extends React.Component {
       display: block;
       border: solid 1px darkred;
       border-radius: ${rhythm(1/4)};
-      background-color: lightred;
+      background-color: mistyrose;
       margin: 0 auto;
       padding: ${rhythm(1.5)};
       width: 80%;
