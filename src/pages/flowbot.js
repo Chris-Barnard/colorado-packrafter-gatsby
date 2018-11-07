@@ -128,6 +128,7 @@ class Flowbot extends React.Component {
       background: rgb(243, 243, 243);
       padding: ${rhythm(1)};
       margin-bottom: ${rhythm(1/2)};
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     `
     const overUnder = css`
       flex-basis: 50%;
@@ -144,6 +145,7 @@ class Flowbot extends React.Component {
     const submitButtonStyle = css`
       align-self: center;
       width: 80%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     `
     return (
       <div>

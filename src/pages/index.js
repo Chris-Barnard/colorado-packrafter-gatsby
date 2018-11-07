@@ -7,7 +7,6 @@ import Layout from "../components/layout"
 import PostHeader from "../components/postHeader"
 
 export default ({ data }) => {
-  console.log(data)
   const { totalCount, edges } = data.allMarkdownRemark
   const fluid = data.file.childImageSharp.fluid
   const headerStyle = css`
